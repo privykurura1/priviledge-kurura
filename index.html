@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Priviledge Kurura | Portfolio</title>
+  <meta name="description" content="Priviledge Kurura — IT Solutions Architect & Software Developer. Featured app: Fambai CV (AI chat-based CV builder) on Google Play." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Optional: Social preview -->
+  <meta property="og:title" content="Priviledge Kurura | Portfolio" />
+  <meta property="og:description" content="IT Solutions Architect & Software Developer. Featured: Fambai CV — AI chat-based CV builder." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --bg2:#0e1730;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.75);
+      --border:rgba(255,255,255,.14);
+      --brand:#36d6ff;
+      --brand2:#7c5cff;
+      --ok:#3dffb3;
+      --danger:#ff5c7c;
+      --shadow:0 18px 45px rgba(0,0,0,.38);
+      --radius:18px;
+      --radius2:26px;
+      --max:1150px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 15% -10%, rgba(124,92,255,.30), transparent 60%),
+        radial-gradient(900px 520px at 85% 0%, rgba(54,214,255,.22), transparent 55%),
+        radial-gradient(700px 420px at 55% 110%, rgba(61,255,179,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 90px;}
+    .muted{color:var(--muted)}
+    .hr{height:1px; background:rgba(255,255,255,.12); margin:16px 0;}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(11,18,32,.58);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:950;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:50%;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      box-shadow:0 0 0 4px rgba(54,214,255,.12);
+    }
+    .nav-links{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav-links a{
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:800;
+      font-size:13px;
+    }
+    .nav-links a:hover{
+      border-color:var(--border);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
+
+    /* BUTTONS */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease, filter .2s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.22)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#031018;
+    }
+    .btn.primary:hover{filter:brightness(1.03)}
+    .btn.ghost{ background:transparent; }
+    .btn.small{padding:10px 12px; border-radius:12px; font-size:14px}
+
+    /* CARDS / SECTIONS */
+    .card{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:none;
+    }
+    section{margin-top:22px}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px;
+      margin:18px 0 10px;
+    }
+    .section-title h2{margin:0; font-size:20px; letter-spacing:-.2px}
+    .section-title p{margin:0; color:var(--muted); font-size:13px; font-weight:800}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+    @media(max-width:980px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    .pill-row{display:flex; flex-wrap:wrap; gap:10px}
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+
+    /* HERO */
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      padding:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(350px 220px at 12% 25%, rgba(54,214,255,.18), transparent 60%),
+        radial-gradient(300px 210px at 88% 20%, rgba(124,92,255,.20), transparent 60%),
+        radial-gradient(260px 200px at 55% 95%, rgba(61,255,179,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+      width:fit-content;
+      margin-bottom:12px;
+    }
+    .badge{
+      font-size:12px;
+      font-weight:1000;
+      color:#00131a;
+      background:linear-gradient(135deg,var(--brand),var(--ok));
+      padding:4px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(30px, 3.6vw, 48px);
+      line-height:1.05;
+      letter-spacing:-1px;
+    }
+    .lead{margin:0 0 14px; color:var(--muted); font-size:16px; max-width:70ch}
+    .cta-row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+
+    /* Profile Image / PI */
+    .profile{
+      display:flex; flex-direction:column; gap:12px;
+      height:100%;
+    }
+    .profile-top{display:flex; gap:12px; align-items:center;}
+    .avatar{
+      width:64px; height:64px; border-radius:18px;
+      border:1px solid var(--border);
+      background:
+        radial-gradient(50px 50px at 30% 30%, rgba(54,214,255,.22), transparent 60%),
+        radial-gradient(50px 50px at 70% 70%, rgba(124,92,255,.22), transparent 60%),
+        rgba(255,255,255,.04);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:1000;
+      letter-spacing:.5px;
+      color:rgba(234,240,255,.92);
+      user-select:none;
+      overflow:hidden;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover; display:none;}
+    .profile-name{font-weight:1000; font-size:18px}
+    .profile-role{font-weight:900; font-size:13px; color:var(--muted)}
+    .mini{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+    @media(max-width:520px){.mini{grid-template-columns:1fr}}
+    .mini .item{
+      padding:12px; border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+    }
+    .mini .k{color:var(--muted); font-size:12px; font-weight:900; margin-bottom:3px}
+    .mini .v{font-weight:1000}
+
+    /* FAMBAI CV FEATURE */
+    .featured{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media(max-width:980px){.featured{grid-template-columns:1fr}}
+
+    .app-hero{
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      padding:18px;
+      background:
+        linear-gradient(135deg, rgba(54,214,255,.14), rgba(124,92,255,.12)),
+        rgba(255,255,255,.05);
+      position:relative;
+      overflow:hidden;
+    }
+    .app-hero::after{
+      content:"";
+      position:absolute;
+      right:-120px; top:-120px;
+      width:260px; height:260px; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(61,255,179,.26), transparent 62%);
+      pointer-events:none;
+    }
+    .app-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; flex-wrap:wrap;
+      position:relative;
+    }
+    .app-title h3{margin:0; font-size:22px; letter-spacing:-.2px}
+    .app-sub{margin:10px 0 0; color:var(--muted); position:relative}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:7px 0}
+
+    .kv{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
+      margin-top:12px;
+    }
+    @media(max-width:520px){.kv{grid-template-columns:1fr}}
+    .kv .item{
+      padding:12px; border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+    }
+    .kv .k{color:var(--muted); font-size:12px; font-weight:900; margin-bottom:3px}
+    .kv .v{font-weight:1000}
+
+    /* Screenshots grid + modal */
+    .shots{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:12px}
+    @media(max-width:980px){.shots{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.shots{grid-template-columns:1fr}}
+
+    /* UPDATED: image-based screenshots */
+    .shot{
+      height:140px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      overflow:hidden;
+      cursor:pointer;
+      padding:0;
+      display:block;
+    }
+    .shot:hover{ filter:brightness(1.05); }
+    .shot img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .modal{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.65);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:1000;
+    }
+    .modal.open{display:flex}
+    .modal-card{
+      width:min(900px, 100%);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(11,18,32,.92);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .modal-top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      gap:12px;
+    }
+    .modal-title{font-weight:1000}
+    .modal-body{padding:14px}
+    .modal-img{
+      width:100%; height:420px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(234,240,255,.72);
+      font-weight:900;
+      overflow:hidden;
+    }
+
+    /* Sticky download bar */
+    .sticky{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      z-index:60;
+      background:rgba(11,18,32,.72);
+      backdrop-filter:blur(10px);
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    .sticky-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .sticky-left{
+      display:flex; flex-direction:column;
+      gap:2px;
+    }
+    .sticky-left strong{font-weight:1000}
+    .sticky-left span{font-size:13px; color:var(--muted); font-weight:900}
+
+    footer{
+      margin-top:28px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top"><span class="dot"></span><span>Priviledge Kurura</span></a>
+      <div class="nav-links">
+        <a href="#pi">PI</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#apps">Apps</a>
+        <a href="#fambai-cv">Fambai CV</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="badge">IT • Software • Mobile</span>
+            <span>Solutions Architect & App Developer (Zimbabwe)</span>
+          </div>
+
+          <h1>Building practical software that helps people win.</h1>
+          <p class="lead">
+            I’m <strong>Priviledge Kurura</strong>. I create mobile-first tools for productivity and careers —
+            including <strong>Fambai CV</strong>, an AI-guided CV builder that helps job seekers generate a professional resume fast.
+          </p>
+
+          <div class="cta-row">
+            <button class="btn primary" id="heroDownload" type="button">⬇️ Download Fambai CV</button>
+            <a class="btn" href="#fambai-cv">View Fambai CV</a>
+            <a class="btn ghost" href="#contact">Contact</a>
+          </div>
+
+          <div class="hr"></div>
+          <div class="pill-row">
+            <span class="pill">Flutter</span>
+            <span class="pill">Python</span>
+            <span class="pill">Mobile Apps</span>
+            <span class="pill">System Design</span>
+            <span class="pill">Career Tools</span>
+          </div>
+        </div>
+
+        <!-- PROFILE / PI QUICK CARD -->
+        <div class="card profile">
+          <div class="profile-top">
+            <!-- PI: Profile Image -->
+            <div class="avatar" title="Profile Image (PI)">
+              <img id="profileImg" alt="Priviledge Kurura profile image" />
+              <span id="avatarText">PK</span>
+            </div>
+            <div>
+              <div class="profile-name">Priviledge Kurura</div>
+              <div class="profile-role">IT Solutions Architect • Software Developer</div>
+            </div>
+          </div>
+
+          <div class="mini">
+            <div class="item">
+              <div class="k">Location</div>
+              <div class="v">Zimbabwe</div>
+            </div>
+            <div class="item">
+              <div class="k">Featured App</div>
+              <div class="v">Fambai CV</div>
+            </div>
+            <div class="item">
+              <div class="k">Email</div>
+              <div class="v">priviledgeprogrammer@gmail.com</div>
+            </div>
+            <div class="item">
+              <div class="k">Phone</div>
+              <div class="v">+263778111517</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="muted" style="font-size:13px; font-weight:900;">
+            Your profile photo is set to <code>assets/p1.jpg</code>. Your screenshots are set to <code>assets/s1.jpg</code> to <code>assets/s4.jpg</code>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PI SECTION (Personal Information) -->
+    <section id="pi">
+      <div class="section-title">
+        <h2>PI</h2>
+        <p>Personal Information</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div style="font-weight:1000">Identity</div>
+          <div class="hr"></div>
+          <div class="muted" style="font-weight:900">
+            <strong>Name:</strong> Priviledge Kurura<br/>
+            <strong>Role:</strong> IT Solutions Architect / Software Developer<br/>
+            <strong>Base:</strong> Zimbabwe<br/>
+            <strong>Focus:</strong> Mobile apps, productivity tools, career tools
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:1000">Contact</div>
+          <div class="hr"></div>
+          <div class="muted" style="font-weight:900">
+            <strong>Email:</strong> priviledgeprogrammer@gmail.com<br/>
+            <strong>Phone:</strong> +263778111517<br/>
+            <strong>Address:</strong> Kadoma, Zimbabwe
+          </div>
+          <div style="height:10px"></div>
+          <div class="cta-row">
+            <a class="btn small" href="mailto:priviledgeprogrammer@gmail.com">✉️ Email</a>
+            <a class="btn small" href="tel:+263778111517">📞 Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <p>What I build</p>
+      </div>
+
+      <div class="card">
+        <p class="muted" style="margin:0; font-weight:900;">
+          I build user-friendly software that solves real problems. My products focus on simplicity, speed, and practical value —
+          especially tools for job seekers and small businesses.
+        </p>
+
+        <div class="hr"></div>
+
+        <div class="grid-3">
+          <div class="card" style="background:rgba(255,255,255,.03)">
+            <div style="font-weight:1000">What I do</div>
+            <ul class="list">
+              <li>Mobile app development</li>
+              <li>IT solutions & architecture</li>
+              <li>Product design & delivery</li>
+            </ul>
+          </div>
+          <div class="card" style="background:rgba(255,255,255,.03)">
+            <div style="font-weight:1000">How I work</div>
+            <ul class="list">
+              <li>Build fast prototypes</li>
+              <li>Test with users</li>
+              <li>Ship clean, reliable solutions</li>
+            </ul>
+          </div>
+          <div class="card" style="background:rgba(255,255,255,.03)">
+            <div style="font-weight:1000">Tech stack</div>
+            <ul class="list">
+              <li>Flutter</li>
+              <li>Python</li>
+              <li>APIs & integrations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Core strengths</p>
+      </div>
+
+      <div class="card">
+        <div class="pill-row">
+          <span class="pill">Flutter</span>
+          <span class="pill">Python</span>
+          <span class="pill">Android / Mobile</span>
+          <span class="pill">UI/UX Implementation</span>
+          <span class="pill">System Architecture</span>
+          <span class="pill">Product Delivery</span>
+          <span class="pill">APIs</span>
+          <span class="pill">Automation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPS -->
+    <section id="apps">
+      <div class="section-title">
+        <h2>Apps</h2>
+        <p>Selected work</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-weight:1000; font-size:16px">Fambai CV</div>
+          <div class="muted" style="font-weight:900">AI chat-based CV builder</div>
+          <div class="hr"></div>
+          <a class="btn small" href="#fambai-cv">View details</a>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:1000; font-size:16px">Fambai Shop</div>
+          <div class="muted" style="font-weight:900">Inventory tool for small businesses</div>
+          <div class="hr"></div>
+          <div class="muted" style="font-size:13px; font-weight:900">Add the Play Store link if you want.</div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:1000; font-size:16px">Other Apps</div>
+          <div class="muted" style="font-weight:900">Workwise • RecoverPro • GoHo • Farayi • more</div>
+          <div class="hr"></div>
+          <div class="muted" style="font-size:13px; font-weight:900">You can list all apps here with links later.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAMBAI CV -->
+    <section id="fambai-cv">
+      <div class="section-title">
+        <h2>Featured App: Fambai CV</h2>
+        <p>Landing-page style showcase + advert</p>
+      </div>
+
+      <div class="featured">
+        <!-- MAIN APP DETAILS -->
+        <div class="app-hero">
+          <div class="app-title">
+            <h3>Fambai CV</h3>
+            <button class="btn primary" id="downloadBtn" type="button">⬇️ Download on Google Play</button>
+          </div>
+
+          <p class="app-sub">
+            <strong>Fambai CV</strong> is an <strong>AI-guided, chat-style CV builder</strong> for Android.
+            You answer simple prompts in a conversation and the app generates a structured, professional CV.
+          </p>
+
+          <div class="kv">
+            <div class="item">
+              <div class="k">Developer</div>
+              <div class="v">Priviledge Kurura</div>
+            </div>
+            <div class="item">
+              <div class="k">Platform</div>
+              <div class="v">Android (Google Play)</div>
+            </div>
+            <div class="item">
+              <div class="k">Pricing</div>
+              <div class="v">Free (contains ads)</div>
+            </div>
+            <div class="item">
+              <div class="k">Best for</div>
+              <div class="v">Students • Job seekers • Professionals</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">Key Features</div>
+          <ul class="list">
+            <li><strong>Chat-based CV building:</strong> answer prompts like WhatsApp style chat.</li>
+            <li><strong>AI writing help:</strong> professional wording for skills and experience.</li>
+            <li><strong>ATS-friendly structure:</strong> designed to match modern recruiter expectations.</li>
+            <li><strong>Export & share:</strong> create a CV for applications (e.g., PDF export).</li>
+            <li><strong>Easy updates:</strong> edit quickly for different jobs.</li>
+          </ul>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">How it works</div>
+          <ol class="list">
+            <li>Open the app and start the CV chat.</li>
+            <li>Answer questions about personal info, education, skills, and experience.</li>
+            <li>The AI organizes your details into a professional format.</li>
+            <li>Export/share and apply for jobs.</li>
+          </ol>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">Technology</div>
+          <ul class="list">
+            <li><strong>Flutter</strong> (mobile UI & app)</li>
+            <li><strong>Python</strong> (AI features / supporting services)</li>
+          </ul>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">Privacy & Data Safety</div>
+          <div class="card" style="background:rgba(0,0,0,.16); margin-top:10px">
+            <div class="muted" style="font-weight:900">
+              • No user data shared with third parties.<br/>
+              • No data collection declared by the developer.
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">Screenshots</div>
+          <div class="muted" style="font-size:13px; font-weight:900">
+            Click a screenshot to preview.
+          </div>
+
+          <!-- UPDATED: uses your filenames s1-s4 -->
+          <div class="shots">
+            <div class="shot" data-shot="Screenshot 1" data-src="assets/s1.jpg">
+              <img src="assets/s1.jpg" alt="Fambai CV screenshot 1">
+            </div>
+            <div class="shot" data-shot="Screenshot 2" data-src="assets/s2.jpg">
+              <img src="assets/s2.jpg" alt="Fambai CV screenshot 2">
+            </div>
+            <div class="shot" data-shot="Screenshot 3" data-src="assets/s3.jpg">
+              <img src="assets/s3.jpg" alt="Fambai CV screenshot 3">
+            </div>
+            <div class="shot" data-shot="Screenshot 4" data-src="assets/s4.jpg">
+              <img src="assets/s4.jpg" alt="Fambai CV screenshot 4">
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDEBAR AD -->
+        <aside class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <div style="font-weight:1000; font-size:16px">Advert</div>
+            <span class="badge">CV Ready</span>
+          </div>
+
+          <p class="muted" style="margin-top:10px; font-weight:900">
+            <strong>Need a CV fast?</strong><br/>
+            Build a professional CV using a simple chat interface.
+            No stress, no long forms — just answer questions and export your CV.
+          </p>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">Perfect for</div>
+          <ul class="list">
+            <li>Students applying for internships</li>
+            <li>Graduates and entry-level applicants</li>
+            <li>Professionals updating their CV</li>
+            <li>Anyone who wants an ATS-ready CV</li>
+          </ul>
+
+          <div class="hr"></div>
+
+          <button class="btn primary" id="downloadBtn2" type="button">⬇️ Get Fambai CV</button>
+          <div style="height:10px"></div>
+          <a class="btn" id="openPlayLink" href="#" target="_blank" rel="noopener noreferrer">Open Play Store page</a>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:1000">Developer contact</div>
+          <div class="muted" style="font-weight:900; margin-top:8px">
+            Email: priviledgeprogrammer@gmail.com<br/>
+            Phone: +263778111517<br/>
+            Address: Gweru, Zimbabwe
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let’s build something useful</p>
+      </div>
+
+      <div class="card">
+        <div class="grid-3">
+          <div class="card" style="background:rgba(255,255,255,.03)">
+            <div style="font-weight:1000">Email</div>
+            <div class="muted" style="font-weight:900">priviledgeprogrammer@gmail.com</div>
+          </div>
+          <div class="card" style="background:rgba(255,255,255,.03)">
+            <div style="font-weight:1000">Phone / WhatsApp</div>
+            <div class="muted" style="font-weight:900">+263778111517</div>
+          </div>
+          <div class="card" style="background:rgba(255,255,255,.03)">
+            <div style="font-weight:1000">Location</div>
+            <div class="muted" style="font-weight:900">Gweru, Zimbabwe</div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:priviledgeprogrammer@gmail.com">✉️ Email Me</a>
+          <a class="btn" href="tel:+263778111517">📞 Call</a>
+          <button class="btn" id="copyEmail" type="button">📋 Copy Email</button>
+        </div>
+
+        <div class="hr"></div>
+        <div class="muted" style="font-size:13px; font-weight:900">
+          Hosting tip: save as <strong>index.html</strong> and upload to GitHub Pages / Netlify / Vercel.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Priviledge Kurura • Portfolio
+    </footer>
+  </main>
+
+  <!-- SCREENSHOT MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle">Preview</div>
+        <button class="btn small" id="closeModal" type="button">✖ Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-img" id="modalImg">Screenshot preview area</div>
+        <div class="muted" style="font-size:13px; font-weight:900; margin-top:10px">
+          Tip: If your images are PNG, rename them in code to <code>.png</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY CTA -->
+  <div class="sticky">
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <strong>Fambai CV</strong>
+        <span>AI chat-based CV builder — download on Google Play</span>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn primary" id="stickyDownload" type="button">⬇️ Download</button>
+        <a class="btn" href="#fambai-cv">View details</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // If your real Fambai CV link is different, replace it here.
+    const FAMBAI_CV_PLAY_URL = "https://play.google.com/store/apps/details?id=com.mpkcomteck.jarvis";
+
+    // ✅ Your profile picture filename (p1)
+    // Put the file at: assets/p1.jpg
+    const PROFILE_IMAGE_URL = "assets/p1.png";
+
+    function goToPlayStore(){ window.open(FAMBAI_CV_PLAY_URL, "_blank", "noopener,noreferrer"); }
+
+    // Buttons
+    document.getElementById("downloadBtn").addEventListener("click", goToPlayStore);
+    document.getElementById("downloadBtn2").addEventListener("click", goToPlayStore);
+    document.getElementById("heroDownload").addEventListener("click", goToPlayStore);
+    document.getElementById("stickyDownload").addEventListener("click", goToPlayStore);
+
+    // Play link
+    document.getElementById("openPlayLink").href = FAMBAI_CV_PLAY_URL;
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Copy email
+    document.getElementById("copyEmail").addEventListener("click", async () => {
+      const email = "priviledgeprogrammer@gmail.com";
+      try{
+        await navigator.clipboard.writeText(email);
+        alert("Copied: " + email);
+      }catch(e){
+        alert("Copy failed. Email: " + email);
+      }
+    });
+
+    // PI: profile image support
+    if(PROFILE_IMAGE_URL){
+      const img = document.getElementById("profileImg");
+      const txt = document.getElementById("avatarText");
+      img.src = PROFILE_IMAGE_URL;
+      img.style.display = "block";
+      txt.style.display = "none";
+    }
+
+    // Screenshot modal (UPDATED: opens the real image)
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImg = document.getElementById("modalImg");
+
+    document.querySelectorAll(".shot").forEach(el => {
+      el.addEventListener("click", () => {
+        const label = el.getAttribute("data-shot") || "Screenshot";
+        const src = el.getAttribute("data-src") || "";
+        modalTitle.textContent = "Preview — " + label;
+
+        if(src){
+          modalImg.innerHTML =
+            `<img src="${src}" alt="${label}" style="width:100%;height:420px;object-fit:contain;display:block;background:rgba(0,0,0,.18);">`;
+        }else{
+          modalImg.textContent = label;
+        }
+
+        modal.classList.add("open");
+      });
+    });
+
+    document.getElementById("closeModal").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("open"); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") modal.classList.remove("open"); });
+  </script>
+</body>
+</html>
