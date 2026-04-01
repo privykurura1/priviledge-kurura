@@ -135,12 +135,23 @@
       padding: 88px 0 68px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 60px;
+      gap: 72px;
       align-items: center;
       border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -24px; top: 40px;
+      width: 340px; height: 340px;
+      background: radial-gradient(circle, rgba(201,169,110,.07) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
     }
     @media(max-width:740px) {
       .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 0 48px; }
+      .hero::before { display: none; }
       .hero-avatar { display: none; }
     }
 
@@ -221,33 +232,100 @@
     }
     .btn.primary:active { transform: translateY(0); box-shadow: none; }
 
+    /* Status badge */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(201,169,110,.2);
+      background: rgba(201,169,110,.06);
+      font-size: 12px; font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74,222,128,.7);
+      flex-shrink: 0;
+      animation: pulse 2.4s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(74,222,128,.7); }
+      50%       { opacity: .7; box-shadow: 0 0 14px rgba(74,222,128,.4); }
+    }
+
+    /* Avatar wrapper for caption */
+    .avatar-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      flex-shrink: 0;
+    }
+    .avatar-caption {
+      text-align: center;
+    }
+    .avatar-caption .ac-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: .3px;
+      color: var(--text);
+    }
+    .avatar-caption .ac-role {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
     /* Avatar */
     .hero-avatar {
-      width: 180px; height: 180px;
-      border-radius: 50%;
+      width: 230px; height: 290px;
+      border-radius: 16px;
       border: 1px solid var(--border2);
       overflow: hidden;
       background: var(--surface2);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 58px; font-weight: 700;
+      font-size: 64px; font-weight: 700;
       color: var(--accent);
       flex-shrink: 0;
-      transition: border-color .25s, box-shadow .25s;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
       position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(201,169,110,.06);
+    }
+    .hero-avatar::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(201,169,110,.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
     }
     .hero-avatar::after {
       content: '';
-      position: absolute; inset: -4px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,.15);
+      position: absolute; inset: -6px;
+      border-radius: 20px;
+      border: 1px solid rgba(201,169,110,.12);
       pointer-events: none;
     }
     .hero-avatar:hover {
-      border-color: rgba(201,169,110,.4);
-      box-shadow: 0 0 40px rgba(201,169,110,.12);
+      border-color: rgba(201,169,110,.35);
+      box-shadow: 0 28px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(201,169,110,.15), 0 0 60px rgba(201,169,110,.08);
+      transform: translateY(-4px);
     }
-    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .hero-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-avatar .avatar-fallback {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px; font-weight: 700;
+      color: var(--accent);
+    }
 
     /* ── ABOUT ── */
     .about-grid {
@@ -590,12 +668,13 @@
     .hero {
       animation: fadeUp .6s cubic-bezier(.22,.68,0,1.2) both;
     }
-    .hero .eyebrow  { animation: fadeUp .5s ease .05s both; }
-    .hero h1        { animation: fadeUp .55s ease .1s both; }
-    .hero-tagline   { animation: fadeUp .55s ease .16s both; }
-    .hero-desc      { animation: fadeUp .55s ease .22s both; }
-    .hero .btn-row  { animation: fadeUp .55s ease .3s both; }
-    .hero-avatar    { animation: fadeUp .6s ease .35s both; }
+    .hero .status-badge { animation: fadeUp .5s ease .02s both; }
+    .hero .eyebrow  { animation: fadeUp .5s ease .08s both; }
+    .hero h1        { animation: fadeUp .55s ease .14s both; }
+    .hero-tagline   { animation: fadeUp .55s ease .20s both; }
+    .hero-desc      { animation: fadeUp .55s ease .26s both; }
+    .hero .btn-row  { animation: fadeUp .55s ease .34s both; }
+    .avatar-wrap    { animation: fadeUp .6s ease .40s both; }
   </style>
 </head>
 
@@ -620,6 +699,10 @@
     <!-- HERO -->
     <div class="hero">
       <div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          Available for projects &amp; collaborations
+        </div>
         <div class="eyebrow">IT Solutions Architect &amp; Software Developer</div>
         <h1>Priviledge<br/>Kurura</h1>
         <span class="hero-tagline">Building mobile tools that unlock opportunity — from Zimbabwe, for Africa.</span>
@@ -633,9 +716,15 @@
           <a class="btn" href="#contact">Get in Touch</a>
         </div>
       </div>
-      <div class="hero-avatar">
-        <img id="profileImg" alt="Priviledge Kurura" />
-        <span id="avatarFallback">PK</span>
+      <div class="avatar-wrap">
+        <div class="hero-avatar" id="heroAvatarBox">
+          <img id="profileImg" src="assets/p1.png" alt="Priviledge Kurura" />
+          <div class="avatar-fallback" id="avatarFallback" style="display:none;">PK</div>
+        </div>
+        <div class="avatar-caption">
+          <div class="ac-name">Priviledge Kurura</div>
+          <div class="ac-role">Zimbabwe</div>
+        </div>
       </div>
     </div>
 
@@ -818,7 +907,7 @@
       <div class="contact-grid">
         <div class="contact-cell">
           <div class="label">Email</div>
-          <div class="value">priviledgeprogrammer@gmail.com</div>
+          <div class="value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f3f3d263926232a2b282a3f3d20283d2e22222a3d0f28222e2623612c2022">[email&#160;protected]</a></div>
         </div>
         <div class="contact-cell">
           <div class="label">Phone / WhatsApp</div>
@@ -830,7 +919,7 @@
         </div>
       </div>
       <div class="contact-actions">
-        <a class="btn primary" href="mailto:priviledgeprogrammer@gmail.com">Email Me</a>
+        <a class="btn primary" href="/cdn-cgi/l/email-protection#4737352e312e2b222320223735282035262a2a223507202a262e2b6924282a">Email Me</a>
         <a class="btn" href="tel:+263778111517">Call</a>
         <button class="btn" id="copyEmail" type="button">Copy Email</button>
       </div>
@@ -871,7 +960,7 @@
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── PLAY STORE URL ── replace with your actual listing URL
     const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.mpkcomteck.fambai';
 
@@ -937,22 +1026,17 @@
     document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
     // ── PROFILE IMAGE ──
-    const profileImg    = document.getElementById('profileImg');
+    const profileImg     = document.getElementById('profileImg');
     const avatarFallback = document.getElementById('avatarFallback');
 
-    profileImg.addEventListener('load', function() {
-      profileImg.style.display = 'block';
-      avatarFallback.style.display = 'none';
-    });
     profileImg.addEventListener('error', function() {
       profileImg.style.display = 'none';
-      avatarFallback.style.display = '';
+      avatarFallback.style.display = 'flex';
     });
-    profileImg.src = 'https://priviledgekurura.site/assets/profile.jpg';
 
     // ── FOOTER YEAR ──
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 
+  </script>
 </body>
 </html>
